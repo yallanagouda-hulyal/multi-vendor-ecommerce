@@ -11,18 +11,26 @@ function Products() {
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("-createdAt");
 
+  // Pagination
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalProducts, setTotalProducts] = useState(0);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const token = localStorage.getItem("token");
 
+  // =========================
+  // FETCH PRODUCTS
+  // =========================
   const fetchProducts = async () => {
     try {
       setLoading(true);
       setError("");
 
       const params = {
-        page: 1,
+        page,
         limit: 12,
         sort,
       };
@@ -40,18 +48,36 @@ function Products() {
       });
 
       setProducts(response.data.products || []);
+
+      // Backend pagination
+      setTotalPages(
+        response.data.pagination?.totalPages ||
+          response.data.totalPages ||
+          1
+      );
+
+      setTotalProducts(
+        response.data.pagination?.totalProducts ||
+          response.data.totalProducts ||
+          0
+      );
     } catch (err) {
-      console.error(err);
+      console.error("Failed to load products:", err);
 
       setError(
         err.response?.data?.message ||
           "Failed to load products."
       );
+
+      setProducts([]);
     } finally {
       setLoading(false);
     }
   };
 
+  // =========================
+  // FETCH CATEGORIES
+  // =========================
   const fetchCategories = async () => {
     try {
       const response = await api.get("/products", {
@@ -73,23 +99,44 @@ function Products() {
 
       setCategories(uniqueCategories);
     } catch (err) {
-      console.error("Failed to load categories:", err);
+      console.error(
+        "Failed to load categories:",
+        err
+      );
     }
   };
 
+  // =========================
+  // FETCH WHEN FILTER/PAGE CHANGES
+  // =========================
   useEffect(() => {
     fetchProducts();
-  }, [category, sort]);
+  }, [category, sort, page]);
 
+  // =========================
+  // FETCH CATEGORIES ONCE
+  // =========================
   useEffect(() => {
     fetchCategories();
   }, []);
 
+  // =========================
+  // SEARCH
+  // =========================
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchProducts();
+
+    // Start search from page 1
+    if (page !== 1) {
+      setPage(1);
+    } else {
+      fetchProducts();
+    }
   };
 
+  // =========================
+  // ADD TO CART
+  // =========================
   const addToCart = async (productId) => {
     if (!token) {
       alert("Please login to add products to cart.");
@@ -119,6 +166,9 @@ function Products() {
     }
   };
 
+  // =========================
+  // ADD TO WISHLIST
+  // =========================
   const addToWishlist = async (productId) => {
     if (!token) {
       alert("Please login to add products to wishlist.");
@@ -147,10 +197,16 @@ function Products() {
     }
   };
 
+  // =========================
+  // FORMAT PRICE
+  // =========================
   const formatPrice = (price) => {
     return Number(price || 0).toLocaleString("en-IN");
   };
 
+  // =========================
+  // PRODUCT IMAGE
+  // =========================
   const getProductImage = (product) => {
     if (
       product.images &&
@@ -163,6 +219,25 @@ function Products() {
     return "https://via.placeholder.com/600x500?text=Product";
   };
 
+  // =========================
+  // GO TO PAGE
+  // =========================
+  const goToPage = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) {
+      return;
+    }
+
+    setPage(newPage);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // =========================
+  // LOADING
+  // =========================
   if (loading) {
     return (
       <div className="products-page">
@@ -176,6 +251,9 @@ function Products() {
     );
   }
 
+  // =========================
+  // UI
+  // =========================
   return (
     <div className="products-page">
       <div className="products-container">
@@ -198,12 +276,15 @@ function Products() {
         {/* FILTER BAR */}
         <div className="products-filter-card">
 
+          {/* SEARCH */}
           <form
             className="products-search"
             onSubmit={handleSearch}
           >
             <div className="search-input-wrapper">
-              <span className="search-icon">⌕</span>
+              <span className="search-icon">
+                ⌕
+              </span>
 
               <input
                 type="text"
@@ -220,16 +301,19 @@ function Products() {
             </button>
           </form>
 
+          {/* FILTERS */}
           <div className="products-filters">
 
+            {/* CATEGORY */}
             <div className="filter-group">
               <label>Category</label>
 
               <select
                 value={category}
-                onChange={(e) =>
-                  setCategory(e.target.value)
-                }
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                  setPage(1);
+                }}
               >
                 <option value="">
                   All Categories
@@ -246,14 +330,16 @@ function Products() {
               </select>
             </div>
 
+            {/* SORT */}
             <div className="filter-group">
               <label>Sort By</label>
 
               <select
                 value={sort}
-                onChange={(e) =>
-                  setSort(e.target.value)
-                }
+                onChange={(e) => {
+                  setSort(e.target.value);
+                  setPage(1);
+                }}
               >
                 <option value="-createdAt">
                   Newest
@@ -291,14 +377,19 @@ function Products() {
         {/* RESULTS INFO */}
         <div className="products-results-bar">
           <div>
-            <strong>{products.length}</strong>{" "}
+            <strong>
+              {totalProducts || products.length}
+            </strong>{" "}
             products found
           </div>
 
           {category && (
             <button
               className="clear-filter"
-              onClick={() => setCategory("")}
+              onClick={() => {
+                setCategory("");
+                setPage(1);
+              }}
             >
               Clear filter ×
             </button>
@@ -308,6 +399,7 @@ function Products() {
         {/* PRODUCTS */}
         {products.length === 0 ? (
           <div className="products-empty">
+
             <div className="empty-icon">
               🛍️
             </div>
@@ -323,140 +415,226 @@ function Products() {
               onClick={() => {
                 setSearch("");
                 setCategory("");
+                setPage(1);
               }}
             >
               View All Products
             </button>
+
           </div>
         ) : (
-          <div className="products-grid">
+          <>
+            <div className="products-grid">
 
-            {products.map((product) => (
-              <article
-                className="product-card"
-                key={product._id}
-              >
+              {products.map((product) => (
+                <article
+                  className="product-card"
+                  key={product._id}
+                >
 
-                {/* IMAGE */}
-                <div className="product-image-wrapper">
+                  {/* IMAGE */}
+                  <div className="product-image-wrapper">
 
-                  <Link
-                    to={`/products/${product._id}`}
-                    className="product-image-link"
-                  >
-                    <img
-                      src={getProductImage(product)}
-                      alt={product.name}
-                      onError={(e) => {
-                        e.currentTarget.src =
-                          "https://via.placeholder.com/600x500?text=Product";
-                      }}
-                    />
-                  </Link>
+                    <Link
+                      to={`/products/${product._id}`}
+                      className="product-image-link"
+                    >
+                      <img
+                        src={getProductImage(product)}
+                        alt={product.name}
+                        onError={(e) => {
+                          e.currentTarget.src =
+                            "https://via.placeholder.com/600x500?text=Product";
+                        }}
+                      />
+                    </Link>
 
-                  <button
-                    className="wishlist-button"
-                    onClick={() =>
-                      addToWishlist(product._id)
-                    }
-                    aria-label="Add to wishlist"
-                  >
-                    ♡
-                  </button>
+                    {/* WISHLIST */}
+                    <button
+                      className="wishlist-button"
+                      onClick={() =>
+                        addToWishlist(product._id)
+                      }
+                      aria-label="Add to wishlist"
+                    >
+                      ♡
+                    </button>
 
-                  {product.stock === 0 && (
-                    <span className="out-of-stock-badge">
-                      Out of Stock
-                    </span>
-                  )}
-
-                  {product.stock > 0 &&
-                    product.stock <= 5 && (
-                      <span className="low-stock-badge">
-                        Only {product.stock} left
+                    {/* OUT OF STOCK */}
+                    {product.stock === 0 && (
+                      <span className="out-of-stock-badge">
+                        Out of Stock
                       </span>
                     )}
-                </div>
 
-                {/* PRODUCT INFO */}
-                <div className="product-info">
-
-                  <span className="product-category">
-                    {product.category ||
-                      "General"}
-                  </span>
-
-                  <Link
-                    to={`/products/${product._id}`}
-                    className="product-name"
-                  >
-                    {product.name}
-                  </Link>
-
-                  <div className="product-rating">
-                    <span className="star">
-                      ★
-                    </span>
-
-                    <strong>
-                      {Number(
-                        product.rating || 0
-                      ).toFixed(1)}
-                    </strong>
-
-                    <span className="review-count">
-                      ({product.reviewCount || 0})
-                    </span>
-                  </div>
-
-                  <div className="product-bottom">
-
-                    <div>
-                      <div className="product-price">
-                        ₹{formatPrice(product.price)}
-                      </div>
-
-                      {product.stock > 0 ? (
-                        <span className="stock-status">
-                          ✓ In Stock
-                        </span>
-                      ) : (
-                        <span className="stock-status sold-out">
-                          ✕ Out of Stock
+                    {/* LOW STOCK */}
+                    {product.stock > 0 &&
+                      product.stock <= 5 && (
+                        <span className="low-stock-badge">
+                          Only {product.stock} left
                         </span>
                       )}
+
+                  </div>
+
+                  {/* PRODUCT INFO */}
+                  <div className="product-info">
+
+                    {/* CATEGORY */}
+                    <span className="product-category">
+                      {product.category ||
+                        "General"}
+                    </span>
+
+                    {/* NAME */}
+                    <Link
+                      to={`/products/${product._id}`}
+                      className="product-name"
+                    >
+                      {product.name}
+                    </Link>
+
+                    {/* RATING */}
+                    <div className="product-rating">
+
+                      <span className="star">
+                        ★
+                      </span>
+
+                      <strong>
+                        {Number(
+                          product.rating || 0
+                        ).toFixed(1)}
+                      </strong>
+
+                      <span className="review-count">
+                        ({product.reviewCount || 0})
+                      </span>
+
+                    </div>
+
+                    {/* PRICE + STOCK */}
+                    <div className="product-bottom">
+
+                      <div>
+
+                        <div className="product-price">
+                          ₹{formatPrice(product.price)}
+                        </div>
+
+                        {product.stock > 0 ? (
+                          <span className="stock-status">
+                            ✓ In Stock
+                          </span>
+                        ) : (
+                          <span className="stock-status sold-out">
+                            ✕ Out of Stock
+                          </span>
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    {/* ACTIONS */}
+                    <div className="product-actions">
+
+                      <button
+                        className="add-cart-button"
+                        disabled={product.stock === 0}
+                        onClick={() =>
+                          addToCart(product._id)
+                        }
+                      >
+                        🛒 Add to Cart
+                      </button>
+
+                      <Link
+                        to={`/products/${product._id}`}
+                        className="view-product-button"
+                      >
+                        View Product
+                      </Link>
+
                     </div>
 
                   </div>
 
-                  {/* ACTIONS */}
-                  <div className="product-actions">
+                </article>
+              ))}
 
-                    <button
-                      className="add-cart-button"
-                      disabled={product.stock === 0}
-                      onClick={() =>
-                        addToCart(product._id)
-                      }
-                    >
-                      🛒 Add to Cart
-                    </button>
+            </div>
 
-                    <Link
-                      to={`/products/${product._id}`}
-                      className="view-product-button"
-                    >
-                      View Product
-                    </Link>
+            {/* ========================= */}
+            {/* PAGINATION */}
+            {/* ========================= */}
+            {totalPages > 1 && (
+              <div className="products-pagination">
 
-                  </div>
+                {/* PREVIOUS */}
+                <button
+                  className="pagination-button"
+                  disabled={page === 1}
+                  onClick={() =>
+                    goToPage(page - 1)
+                  }
+                >
+                  ← Previous
+                </button>
+
+                {/* PAGE NUMBERS */}
+                <div className="pagination-pages">
+
+                  {Array.from(
+                    { length: totalPages },
+                    (_, index) => {
+                      const pageNumber = index + 1;
+
+                      return (
+                        <button
+                          key={pageNumber}
+                          className={`pagination-page ${
+                            page === pageNumber
+                              ? "active"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            goToPage(pageNumber)
+                          }
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    }
+                  )}
 
                 </div>
-              </article>
-            ))}
 
-          </div>
+                {/* NEXT */}
+                <button
+                  className="pagination-button"
+                  disabled={page === totalPages}
+                  onClick={() =>
+                    goToPage(page + 1)
+                  }
+                >
+                  Next →
+                </button>
+
+              </div>
+            )}
+
+            {/* PAGE INFORMATION */}
+            {totalPages > 1 && (
+              <div className="pagination-info">
+                Page <strong>{page}</strong> of{" "}
+                <strong>{totalPages}</strong>
+              </div>
+            )}
+
+          </>
         )}
+
       </div>
     </div>
   );
