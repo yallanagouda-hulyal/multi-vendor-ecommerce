@@ -1,0 +1,161 @@
+.seller-orders-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.seller-orders-header {
+  margin-bottom: 30px;
+}
+
+.seller-orders-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.seller-orders-header p {
+  margin: 0;
+  color: #666;
+}
+
+.seller-orders-error {
+  background: #fdeaea;
+  color: #c62828;
+  padding: 14px;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.seller-orders-empty {
+  text-align: center;
+  background: white;
+  padding: 60px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.seller-orders-empty h2 {
+  margin-bottom: 10px;
+}
+
+.seller-orders-empty p {
+  color: #666;
+}
+
+.seller-order-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.seller-order-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 18px;
+}
+
+.seller-order-top h3 {
+  margin: 0 0 8px;
+}
+
+.seller-order-top p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.order-status {
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.order-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.order-status.confirmed,
+.order-status.processing {
+  background: #e8f0fe;
+  color: #2874f0;
+}
+
+.order-status.shipped {
+  background: #e0f7fa;
+  color: #00838f;
+}
+
+.order-status.delivered {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.order-status.cancelled {
+  background: #fdeaea;
+  color: #c62828;
+}
+
+.seller-order-customer {
+  padding: 18px 0;
+}
+
+.seller-order-items {
+  border-top: 1px solid #eee;
+}
+
+.seller-order-item {
+  display: grid;
+  grid-template-columns: 1fr 100px 150px;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.seller-order-item p {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.seller-order-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  color: #555;
+}
+
+.seller-order-bottom strong {
+  color: #111;
+}
+
+.seller-orders-status {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 20px;
+}
+
+@media (max-width: 700px) {
+  .seller-order-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .seller-order-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .seller-order-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

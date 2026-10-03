@@ -1,0 +1,131 @@
+.admin-orders-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.admin-orders-header {
+  margin-bottom: 30px;
+}
+
+.admin-orders-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.admin-orders-header p {
+  margin: 0;
+  color: #666;
+}
+
+.admin-orders-error {
+  background: #fdeaea;
+  color: #c62828;
+  padding: 14px;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.admin-orders-empty {
+  background: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.admin-orders-empty p {
+  color: #666;
+}
+
+.admin-order-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.admin-order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-order-header h3 {
+  margin: 0 0 8px;
+}
+
+.admin-order-header p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.admin-order-header select {
+  padding: 9px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-order-customer {
+  padding: 18px 0;
+  line-height: 1.8;
+}
+
+.admin-order-items {
+  border-top: 1px solid #eee;
+}
+
+.admin-order-item {
+  display: grid;
+  grid-template-columns: 1fr 100px 150px;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-order-item p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.admin-order-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  color: #555;
+}
+
+.admin-order-footer strong {
+  color: #111;
+}
+
+.admin-orders-status {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 20px;
+}
+
+@media (max-width: 700px) {
+  .admin-order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .admin-order-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .admin-order-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

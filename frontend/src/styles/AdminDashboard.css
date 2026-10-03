@@ -1,0 +1,410 @@
+/* =========================================
+   ADMIN DASHBOARD
+========================================= */
+
+.admin-dashboard {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 50px 30px 80px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172033;
+  background: #f7f8fb;
+  min-height: calc(100vh - 80px);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-header {
+  margin-bottom: 28px;
+}
+
+.admin-header h1 {
+  margin: 0 0 8px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.admin-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 16px;
+}
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.admin-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.admin-action-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+
+  text-decoration: none !important;
+  color: #172033 !important;
+
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-action-card:hover {
+  transform: translateY(-3px);
+  border-color: #2563eb;
+  box-shadow: 0 10px 25px rgba(16, 24, 40, 0.1);
+}
+
+.admin-action-icon {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eff6ff;
+  border-radius: 14px;
+
+  font-size: 27px;
+}
+
+.admin-action-card > div:nth-child(2) {
+  flex: 1;
+}
+
+.admin-action-card h3 {
+  margin: 0 0 7px;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  color: #172033;
+}
+
+.admin-action-card p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #667085;
+}
+
+.admin-action-arrow {
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #2563eb;
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.admin-error {
+  margin-bottom: 25px;
+  padding: 14px 18px;
+
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+/* =========================================
+   STATS
+========================================= */
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+
+  margin-bottom: 32px;
+}
+
+.admin-stat-card {
+  padding: 28px;
+
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.05);
+}
+
+.admin-stat-card span {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #667085;
+  font-size: 15px;
+}
+
+.admin-stat-card strong {
+  display: block;
+
+  font-size: 34px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.admin-section {
+  margin-bottom: 32px;
+
+  padding: 28px;
+
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.05);
+}
+
+.admin-section h2 {
+  margin: 0 0 22px;
+
+  font-size: 24px;
+  color: #111827;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  padding: 15px 14px;
+
+  background: #f8fafc;
+
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #344054;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table td {
+  padding: 17px 14px;
+
+  font-size: 14px;
+  color: #475467;
+
+  border-bottom: 1px solid #eef0f3;
+}
+
+.admin-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+/* =========================================
+   SELLER STATUS
+========================================= */
+
+.admin-approved,
+.admin-pending {
+  display: inline-flex;
+
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-approved {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.admin-pending {
+  background: #fff7df;
+  color: #b54708;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.admin-approve-btn,
+.admin-reject-btn,
+.admin-delete-btn {
+  border: none;
+  border-radius: 8px;
+
+  padding: 9px 15px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.admin-approve-btn {
+  background: #eaf7ee;
+  color: #15803d;
+}
+
+.admin-approve-btn:hover {
+  background: #d7f0df;
+}
+
+.admin-reject-btn {
+  background: #feecec;
+  color: #dc2626;
+}
+
+.admin-reject-btn:hover {
+  background: #fddada;
+}
+
+.admin-delete-btn {
+  background: #feecec;
+  color: #dc2626;
+}
+
+.admin-delete-btn:hover {
+  background: #fddada;
+}
+
+/* =========================================
+   PRODUCT
+========================================= */
+
+.admin-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-product img,
+.admin-product-placeholder {
+  width: 48px;
+  height: 48px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.admin-product-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f8fafc;
+
+  font-size: 20px;
+}
+
+.admin-product span {
+  font-weight: 600;
+  color: #172033;
+}
+
+/* =========================================
+   EMPTY / LOADING
+========================================= */
+
+.admin-empty,
+.admin-status {
+  padding: 40px;
+
+  text-align: center;
+
+  color: #667085;
+  font-size: 15px;
+}
+
+.admin-status {
+  min-height: 50vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .admin-quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-dashboard {
+    padding: 30px 15px 60px;
+  }
+
+  .admin-header h1 {
+    font-size: 30px;
+  }
+
+  .admin-section {
+    padding: 18px;
+  }
+
+  .admin-action-card {
+    padding: 18px;
+  }
+
+  .admin-action-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+}

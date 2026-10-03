@@ -1,0 +1,244 @@
+/* =========================================
+   WISHLIST PAGE
+========================================= */
+
+.wishlist-page {
+  min-height: calc(100vh - 80px);
+  background: #f5f7fb;
+  padding: 50px 7%;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.wishlist-page h1 {
+  margin: 0 0 35px;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* =========================================
+   EMPTY WISHLIST
+========================================= */
+
+.empty-wishlist {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 80px 30px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.empty-wishlist h2 {
+  margin: 0 0 12px;
+  color: #111827;
+  font-size: 26px;
+}
+
+.empty-wishlist p {
+  margin: 0 0 28px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.empty-wishlist a {
+  display: inline-block;
+  padding: 13px 24px;
+  background: #2563eb;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 9px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.empty-wishlist a:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   WISHLIST GRID
+========================================= */
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.wishlist-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+.wishlist-card img {
+  width: 100%;
+  height: 230px;
+  display: block;
+  object-fit: cover;
+  background: #f8fafc;
+}
+
+/* =========================================
+   PRODUCT INFORMATION
+========================================= */
+
+.wishlist-card h3 {
+  margin: 20px 18px 8px;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wishlist-price {
+  margin: 0 18px 18px;
+  color: #111827;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.wishlist-actions {
+  display: flex;
+  gap: 10px;
+  padding: 0 18px 20px;
+}
+
+.wishlist-actions a,
+.wishlist-actions button {
+  flex: 1;
+  min-height: 42px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+/* View Product */
+
+.wishlist-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2563eb;
+  color: #ffffff;
+  text-decoration: none;
+  border: 1px solid #2563eb;
+}
+
+.wishlist-actions a:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Remove */
+
+.wishlist-actions button {
+  background: #ffffff;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.wishlist-actions button:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.wishlist-page:has(> :only-child) {
+  color: #475569;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+  .wishlist-page {
+    padding: 45px 5%;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .wishlist-page {
+    padding: 35px 4%;
+  }
+
+  .wishlist-page h1 {
+    font-size: 30px;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .wishlist-page {
+    padding: 28px 18px;
+  }
+
+  .wishlist-page h1 {
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .wishlist-card img {
+    height: 240px;
+  }
+
+  .wishlist-actions {
+    flex-direction: column;
+  }
+
+  .empty-wishlist {
+    padding: 60px 20px;
+  }
+}

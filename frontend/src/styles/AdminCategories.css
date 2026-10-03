@@ -1,0 +1,346 @@
+/* =========================================
+   ADMIN CATEGORIES PAGE
+========================================= */
+
+.admin-categories-page {
+  min-height: calc(100vh - 72px);
+  background: #f5f7fb;
+  padding: 45px 20px 70px;
+}
+
+.admin-categories-container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-categories-header {
+  margin-bottom: 30px;
+}
+
+.admin-categories-header h1 {
+  margin: 0;
+  font-size: 36px;
+  color: #14213d;
+  font-weight: 700;
+}
+
+.admin-categories-header p {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.category-form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+.category-form-card h2 {
+  margin: 0 0 22px;
+  color: #14213d;
+  font-size: 22px;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.category-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dbe1ea;
+  border-radius: 9px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+  background: #fff;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================================
+   FORM BUTTONS
+========================================= */
+
+.category-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.save-category-btn,
+.cancel-edit-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-category-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.save-category-btn:hover {
+  background: #1d4ed8;
+}
+
+.save-category-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-edit-btn {
+  background: #eef2f7;
+  color: #334155;
+}
+
+.cancel-edit-btn:hover {
+  background: #e2e8f0;
+}
+
+/* =========================================
+   CATEGORIES CARD
+========================================= */
+
+.categories-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+.categories-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.categories-card-header h2 {
+  margin: 0;
+  color: #14213d;
+  font-size: 22px;
+}
+
+.categories-card-header span {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.categories-table-wrapper {
+  overflow-x: auto;
+}
+
+.categories-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.categories-table th {
+  background: #f8fafc;
+  color: #475569;
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.categories-table td {
+  padding: 18px 20px;
+  border-top: 1px solid #edf0f4;
+  color: #475569;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.categories-table tbody tr {
+  transition: background 0.2s;
+}
+
+.categories-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.categories-table td strong {
+  color: #172554;
+  font-size: 15px;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-btn {
+  border: none;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.status-btn.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-btn.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.category-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-category-btn,
+.delete-category-btn {
+  border: none;
+  padding: 8px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-category-btn {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.edit-category-btn:hover {
+  background: #dbeafe;
+}
+
+.delete-category-btn {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.delete-category-btn:hover {
+  background: #fee2e2;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-categories {
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.empty-categories h3 {
+  margin: 0 0 8px;
+  color: #334155;
+  font-size: 21px;
+}
+
+.empty-categories p {
+  margin: 0;
+  color: #64748b;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.admin-categories-status {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fb;
+  color: #475569;
+  font-size: 17px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+  .admin-categories-page {
+    padding: 30px 15px 50px;
+  }
+
+  .admin-categories-header h1 {
+    font-size: 28px;
+  }
+
+  .category-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-form-card {
+    padding: 20px;
+  }
+
+  .categories-card-header {
+    padding: 20px;
+  }
+
+  .categories-table th,
+  .categories-table td {
+    padding: 14px;
+  }
+
+  .category-actions {
+    flex-direction: column;
+  }
+}

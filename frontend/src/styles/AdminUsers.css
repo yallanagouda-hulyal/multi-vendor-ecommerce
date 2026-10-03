@@ -1,0 +1,207 @@
+/* =========================================
+   ADMIN USERS
+========================================= */
+
+.admin-users-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 50px 30px 80px;
+  background: #f7f8fb;
+  min-height: calc(100vh - 80px);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172033;
+}
+
+/* Header */
+
+.admin-users-header {
+  margin-bottom: 28px;
+}
+
+.admin-users-header h1 {
+  margin: 0 0 8px;
+  font-size: 38px;
+  color: #111827;
+}
+
+.admin-users-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 16px;
+}
+
+/* Error */
+
+.admin-users-error {
+  margin-bottom: 22px;
+  padding: 14px 18px;
+  border-radius: 10px;
+
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+/* Card */
+
+.admin-users-card {
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.06);
+
+  overflow: hidden;
+}
+
+/* Table */
+
+.admin-users-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-users-table th {
+  padding: 17px 20px;
+
+  background: #f8fafc;
+
+  text-align: left;
+
+  color: #344054;
+  font-size: 14px;
+  font-weight: 700;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-users-table td {
+  padding: 18px 20px;
+
+  color: #475467;
+  font-size: 14px;
+
+  border-bottom: 1px solid #eef0f3;
+}
+
+.admin-users-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+.admin-users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Role */
+
+.user-role {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+.user-role.customer {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.user-role.seller {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.user-role.admin {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+/* Seller status */
+
+.seller-approved,
+.seller-pending {
+  display: inline-flex;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.seller-approved {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.seller-pending {
+  background: #fff7df;
+  color: #b54708;
+}
+
+/* Empty */
+
+.admin-users-empty {
+  padding: 60px 20px;
+
+  text-align: center;
+
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.05);
+}
+
+.admin-users-empty h2 {
+  margin: 0;
+
+  font-size: 22px;
+  color: #344054;
+}
+
+/* Loading */
+
+.admin-users-status {
+  min-height: 60vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #667085;
+  font-size: 16px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .admin-users-page {
+    padding: 30px 15px 60px;
+  }
+
+  .admin-users-header h1 {
+    font-size: 30px;
+  }
+
+  .admin-users-table th,
+  .admin-users-table td {
+    padding: 14px;
+    white-space: nowrap;
+  }
+}
